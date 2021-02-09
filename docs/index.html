@@ -4,15 +4,16 @@
 html{background:linear-gradient(to left,grey,black);
 color:beige}
 a{color:aqua}
-a:hover{color:springgreen}</style>
-<h1>ARMX Address book</h1>
+a:hover{color:springgreen}
+.c{color:pink}</style>
+<h1>ARMX Addressbook</h1>
+<title>ARMX Unidos</title>
 <h4>ARMX Unidos (ARMX)</h4>
 TRC20<br><a href="https://tronscan.org/#/token20/TMumdiPEvVC5pNLycfv9uyYJk27DV9ytXu" target="_blank">TMumdiPEvVC5pNLycfv9uyYJk27DV9ytXu</a><br><br>
 <h4>ONET/ARMX (OneSwap-Share)</h4>
 TRC20<br><a href="https://tronscan.org/#/contract/TVSrY52UdZf4KwaJpVek88qAdCxiidKbFy" target="_blank">TVSrY52UdZf4KwaJpVek88qAdCxiidKbFy</a><br><br>
 <h4>Justswap V1 (JUSTSWAP-V1)</h4>
 TRC20<br><a href="https://tronscan.org/#/contract/TVgdrKsbLYJrTFN5zdCzi4NRPa89nPifxJ" target="_blank">TVgdrKsbLYJrTFN5zdCzi4NRPa89nPifxJ</a><br><br>
-
 <hr>
 <br><br>
 <h2>ARMX holders</h2>
@@ -24,27 +25,37 @@ TRC20<br><a href="https://tronscan.org/#/contract/TVgdrKsbLYJrTFN5zdCzi4NRPa89nP
 <h2>ARMX/TRX Justswap LPT holders</h2>
 <div id="hl">
 </div>
-
+<hr>
+<h1><a href="https://armxu.site">ARMXU.site</a></h1>
+<div id="w"></div>
 <script>
-rht=new XMLHttpRequest();
-rht.open("GET","https://api.trongrid.io/v1/contracts/TMumdiPEvVC5pNLycfv9uyYJk27DV9ytXu/tokens?limit=200",true);
-rht.onload=function() {f(JSON.parse(this.response).data,"ht",18,"ARMX")};
-rht.send();
-rho=new XMLHttpRequest();
-rho.open("GET","https://api.trongrid.io/v1/contracts/TVSrY52UdZf4KwaJpVek88qAdCxiidKbFy/tokens?limit=200",true);
-rho.onload=function() {f(JSON.parse(this.response).data,"ho",18,"ONET/ARMX")};
-rho.send();
-rhl=new XMLHttpRequest();
-rhl.open("GET","https://api.trongrid.io/v1/contracts/TVgdrKsbLYJrTFN5zdCzi4NRPa89nPifxJ/tokens?limit=200",true);
-rhl.onload=function() {f(JSON.parse(this.response).data,"hl",6,"JUSTSWAP V1")};
-rhl.send();
+function t()
+{	rht=new XMLHttpRequest();
+	rht.open("GET","https://api.trongrid.io/v1/contracts/TMumdiPEvVC5pNLycfv9uyYJk27DV9ytXu/tokens?limit=200",true);
+	rht.onload=function() {f(JSON.parse(this.response).data,"ht",18,"ARMX")};
+	rht.send();
+	rho=new XMLHttpRequest();
+	rho.open("GET","https://api.trongrid.io/v1/contracts/TVSrY52UdZf4KwaJpVek88qAdCxiidKbFy/tokens?limit=200",true);
+	rho.onload=function() {f(JSON.parse(this.response).data,"ho",18,"ONET/ARMX")};
+	rho.send();
+	rhl=new XMLHttpRequest();
+	rhl.open("GET","https://api.trongrid.io/v1/contracts/TVgdrKsbLYJrTFN5zdCzi4NRPa89nPifxJ/tokens?limit=200",true);
+	rhl.onload=function() {f(JSON.parse(this.response).data,"hl",6,"JUSTSWAP V1")};
+	rhl.send();
+}
+rcg=new XMLHttpRequest();
+rcg.open("GET","https://api.coingecko.com/api/v3/simple/price?ids=armx-unidos&vs_currencies=usd,btc,ars,mxn",true);
+rcg.onload=function() {p=(JSON.parse(this.response))["armx-unidos"];t()};
+rcg.send();
 function f(h,l,d,n)
 {
 	ol=document.getElementById(l);
+	document.getElementById("w").innerHTML=`Current Market Price<br><span class="c">${(p.ars).toFixed(4)} ARS | ${(p.mxn).toFixed(4)} MXN | ${(p.usd).toFixed(4)} USD | ${(p.btc).toFixed(8)} BTC</span><br><br>`;
 	for(i=0;i< h.length;i++)
 	{
 		li=document.createElement("div");
-		li.innerHTML=`<font size="5em">№${i+1}</font><br><b><a href="https://tronscan.org/#/address/${Object.keys(h[i])[0]}" target="_blank">${Object.keys(h[i])[0]}</a></b><br><font size="3em">${(h[i][Object.keys(h[i])[0]]/10**d).toFixed(d)}</font> <b>${n}</b><br><br>`;
+		q=h[i][Object.keys(h[i])[0]]/10**d;
+		li.innerHTML=`<font size="5em">№${i+1}</font><br><b><a href="https://tronscan.org/#/address/${Object.keys(h[i])[0]}" target="_blank">${Object.keys(h[i])[0]}</a></b><br><font size="5em">${(q).toFixed(d)}</font> <b>${n}</b><br><span class="c">${(2*q*p.ars).toFixed(4)} ARS | ${(2*q*p.mxn).toFixed(4)} MXN | ${(2*q*p.usd).toFixed(4)} USD | ${(2*q*p.btc).toFixed(8)} BTC</span><br><br>`;
 		ol.append(li);
 	}
 }
