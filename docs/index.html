@@ -1,11 +1,11 @@
-<!doctype html>
-<html>
+<!doctype html><html><meta charset="UTF-8">
 <style>*{text-decoration:none;font-family: Arial, Helvetica Neue, Helvetica, sans-serif;overflow-wrap: break-word;text-align:center;transition: 0.5s}
 html{background:linear-gradient(to left,grey,black);
 color:beige}
 a{color:aqua}
 a:hover{color:springgreen}
-.c{color:pink}</style>
+.c{color:#1f9;font-size:0.75em}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <h1>ARMX Addressbook</h1>
 <title>ARMX Unidos</title>
 <h4>ARMX Unidos (ARMX)</h4>
@@ -55,7 +55,7 @@ function f(h,l,d,n)
 	{
 		li=document.createElement("div");
 		q=h[i][Object.keys(h[i])[0]]/10**d;
-		li.innerHTML=`<font size="5em">№${i+1}</font><br><b><a href="https://tronscan.org/#/address/${Object.keys(h[i])[0]}" target="_blank">${Object.keys(h[i])[0]}</a></b><br><font size="5em">${(q).toFixed(d)}</font> <b>${n}</b><br><span class="c">${(2*q*p.ars).toFixed(4)} ARS | ${(2*q*p.mxn).toFixed(4)} MXN | ${(2*q*p.usd).toFixed(4)} USD | ${(2*q*p.btc).toFixed(8)} BTC</span><br><br>`;
+		li.innerHTML=`<font size="5em">№${i+1}</font><br><b><a href="https://tronscan.org/#/address/${Object.keys(h[i])[0]}" target="_blank">${Object.keys(h[i])[0]}</a></b><br><font size="4em">${(q).toFixed(d)}</font> <b>${n}</b><br><span class="c">${(2*q*p.ars).toFixed(4)} ARS | ${(2*q*p.mxn).toFixed(4)} MXN | ${(2*q*p.usd).toFixed(4)} USD | ${(2*q*p.btc).toFixed(8)} BTC</span><br><br>`;
 		ol.append(li);
 	}
 }
