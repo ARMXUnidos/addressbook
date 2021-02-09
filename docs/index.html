@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<style>*{text-decoration:none;font-family: Arial, Helvetica Neue, Helvetica, sans-serif;overflow-wrap: break-word;text-align:center;transition: 0.5s}
+html{background:linear-gradient(to left,grey,black);
+color:beige}
+a{color:aqua}
+a:hover{color:springgreen}</style>
+<h1>ARMX Address book</h1>
+<h4>ARMX Unidos (ARMX)</h4>
+TRC20<br><a href="https://tronscan.org/#/token20/TMumdiPEvVC5pNLycfv9uyYJk27DV9ytXu" target="_blank">TMumdiPEvVC5pNLycfv9uyYJk27DV9ytXu</a><br><br>
+<h4>ONET/ARMX (OneSwap-Share)</h4>
+TRC20<br><a href="https://tronscan.org/#/contract/TVSrY52UdZf4KwaJpVek88qAdCxiidKbFy" target="_blank">TVSrY52UdZf4KwaJpVek88qAdCxiidKbFy</a><br><br>
+<h4>Justswap V1 (JUSTSWAP-V1)</h4>
+TRC20<br><a href="https://tronscan.org/#/contract/TVgdrKsbLYJrTFN5zdCzi4NRPa89nPifxJ" target="_blank">TVgdrKsbLYJrTFN5zdCzi4NRPa89nPifxJ</a><br><br>
+
+<hr>
+<br><br>
+<h2>ARMX holders</h2>
+<div id="ht">
+</div><br><br>
+<h2>ONET/ARMX Oneswap Share holders</h2>
+<div id="ho">
+</div><br><br>
+<h2>ARMX/TRX Justswap LPT holders</h2>
+<div id="hl">
+</div>
+
+<script>
+rht=new XMLHttpRequest();
+rht.open("GET","https://api.trongrid.io/v1/contracts/TMumdiPEvVC5pNLycfv9uyYJk27DV9ytXu/tokens?limit=200",true);
+rht.onload=function() {f(JSON.parse(this.response).data,"ht",18,"ARMX")};
+rht.send();
+rho=new XMLHttpRequest();
+rho.open("GET","https://api.trongrid.io/v1/contracts/TVSrY52UdZf4KwaJpVek88qAdCxiidKbFy/tokens?limit=200",true);
+rho.onload=function() {f(JSON.parse(this.response).data,"ho",18,"ONET/ARMX")};
+rho.send();
+rhl=new XMLHttpRequest();
+rhl.open("GET","https://api.trongrid.io/v1/contracts/TVgdrKsbLYJrTFN5zdCzi4NRPa89nPifxJ/tokens?limit=200",true);
+rhl.onload=function() {f(JSON.parse(this.response).data,"hl",6,"JUSTSWAP V1")};
+rhl.send();
+function f(h,l,d,n)
+{
+	ol=document.getElementById(l);
+	for(i=0;i< h.length;i++)
+	{
+		li=document.createElement("div");
+		li.innerHTML=`<font size="5em">№${i+1}</font><br><b><a href="https://tronscan.org/#/address/${Object.keys(h[i])[0]}" target="_blank">${Object.keys(h[i])[0]}</a></b><br><font size="3em">${(h[i][Object.keys(h[i])[0]]/10**d).toFixed(d)}</font> <b>${n}</b><br><br>`;
+		ol.append(li);
+	}
+}
+</script>
+</html>
